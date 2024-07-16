@@ -1,86 +1,100 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Ayushmaan personal site</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable Manager</title>
     <style>
-        body {background-color:lightcyan;
-         }
-         hr { 
-            border-style: none;
-             border-top-style: dotted ;   
-             width: 3%;
-             border-color: grey;
-             border-width: 5px;
-            }
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 20px;
+            font-size: 18px;
+            white-space: pre-line;
+        }
     </style>
 </head>
 <body>
-    <table cellspacing="20">
-        <tr>
-            <td><img src="ayushmaan.jpg" alt="Ayushmaan profile picture "></td>
-            <td><h1>Ayushmaan</h1>
-                <p><em><strong>Web developer <a href="https://github.com/sudomaan">My github</a></strong></em></p>
-                <p> My name is Ayushmaan i am a web developer looking to learn new skills </p></td>
-        </tr>
-    </table>
-    <hr>
-    <h3>Education</h3>
-    <ul><li> Dav public school,Faridbad</li>
-    <li>Kalinga industrial institute of technology , bhubaneshwar</li></ul>
-    <hr>
-    <h3>Work Experience</h3>
-    <table>
-        <thead><tr><th>Dates</th>
-        <th>work</th></tr></thead>
-        <tbody>
+    <div class="container">
+        <h1>Welcome To Timetable Manager :)</h1>
+        <label for="dayInput">Enter The Day for which You Want Timetable</label>
+        <input type="text" id="dayInput" placeholder="e.g., mon, tue, wed, etc.">
+        <button id="showButton">Show Timetable</button>
+        <p id="resultText"></p>
+    </div>
+    <script>
+        document.getElementById('showButton').addEventListener('click', function() {
+            const day = document.getElementById('dayInput').value.toLowerCase();
+            let timetable;
 
-        </tbody>
-        <tfoot>
-
-        </tfoot><tbody>
-        <tr><td>2022-2023</td>
-        <td> Web developer </td>
-    </tr>
-        <tr><td>2022</td>
-        <td> Learning</td>
-      </tr>
-       </tbody>
-       </table>
-       <hr>
-        <h3>Skills</h3>
-      <table>
-        <tr>
-            <td>
-                ios development 
-            </td>
-            <td>⭐⭐⭐⭐
-
-         </td>
-        </tr>
-        <tr>
-            <td>
-                web development
-            </td>
-            <td>
-                ⭐⭐⭐⭐⭐
-            </td>
-        </tr>
-        <tr>
-            <td>
-                photography
-            </td>
-            <td>
-                ⭐⭐⭐
-            </td>
-        </tr>
-      </table>
-      
-
-    <hr>
-    <a href="hobbies.html">Hobbies</a>
-    <br>
-    <a href="contact.html">Contact Us </a>
-    <br>
-    <a href="about me.html">about me duh </a>
+            switch (day) {
+                case 'mon':
+                    timetable = 'For Monday:\n03:00-04:00 HPC [B-301]\n// Total Time: 1 HRS //';
+                    break;
+                case 'tue':
+                    timetable = 'For Tuesday:\n09:00-10:00 SE [B-304]\n10:00-11:00 EE [B-304]\n11:00-12:00 DAA [A-LH-207]\n12:00-02:00 CN(L) [WL-102]\n04:00-05:00 CD [A-LH-109]\n// Total Time: 6 HRS //';
+                    break;
+                case 'wed':
+                    timetable = 'For Wednesday:\n10:00-11:00 CN [B-302]\n11:00-12:00 CD [A-LH-109]\n12:00-01:00 HPC [B-301]\n// Total Time: 3 HRS //';
+                    break;
+                case 'thr':
+                    timetable = 'For Thursday:\n10:00-11:00 DAA [B-303]\n11:00-12:00 EE [B-301]\n12:00-01:00 CN [B-301]\n01:00-02:00 SE [B-301]\n04:00-05:00 HPC [B-301]\n// Total Time: 5 HRS //';
+                    break;
+                case 'fri':
+                    timetable = 'For Friday:\n09:00-10:00 EE [B-306]\n10:00-11:00 SE [B-306]\n01:00-02:00 CD [A-LH-109]\n// Total Time: 3 HRS //';
+                    break;
+                case 'sat':
+                    timetable = 'For Saturday:\n08:00-09:00 CN [B-205]\n09:00-11:00 DAA(L) [WL-102]\n11:00-12:00 DAA [B-205]\n12:00-01:00 SE [B-205]\n// Total Time: 5 HRS //';
+                    break;
+                case 'sun':
+                    timetable = 'No Schedule For Today Enjoy!!!';
+                    break;
+                default:
+                    timetable = 'Invalid Input -_-';
+                    break;
+            }
+            document.getElementById('resultText').textContent = timetable;
+        });
+    </script>
 </body>
 </html>
